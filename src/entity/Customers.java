@@ -5,17 +5,17 @@ public class Customers {
 		private int customersId;
 		private String firstName;
 		private String lastName;
-		private String email_address;
-		private String phone_number;
-		private int points_held;
+		private String emailAddress;
+		private String phoneNumber;
+		private int pointsHeld;
 		
-		public Customers(int customerId, String firstName, String lastName, String email_address, String phone_number, int points_held) {
+		public Customers(int customerId, String firstName, String lastName, String emailAddress, String phoneNumber, int pointsHeld) {
 			this.setCustomersId(customerId);
 			this.setFirstName(firstName);
 			this.setLastName(lastName);
-			this.setEmail_address(email_address);
-			this.setPhone_number(phone_number);
-			this.setPoints_held(points_held);
+			this.setEmailAddress(emailAddress);
+			this.setPhoneNumber(phoneNumber);
+			this.setPointsHeld(pointsHeld);
 		}
 
 		public int getCustomersId() {
@@ -42,27 +42,27 @@ public class Customers {
 			this.lastName = lastName;
 		}
 
-		public String getEmail_address() {
-			return email_address;
+		public String getEmailAddress() {
+			return emailAddress;
 		}
 
-		public void setEmail_address(String email_address) {
-			this.email_address = email_address;
+		public void setEmailAddress(String emailAddress) {
+			this.emailAddress = emailAddress;
 		}
 
-		public String getPhone_number() {
-			return phone_number;
+		public String getPhoneNumber() {
+			return phoneNumber;
 		}
 
-		public void setPhone_number(String phone_number) {
-			this.phone_number = phone_number;
-		}
-		
-		public int getPoints_held() {
-			return points_held;
+		public void setPhoneNumber(String phoneNumber) {
+			this.phoneNumber = phoneNumber;
 		}
 
-		public void setPoints_held(int points_held) {
-			this.points_held = points_held;
+		public int getPointsHeld() {
+			return pointsHeld;
 		}
-	}
+
+		public void setPointsHeld(int pointsHeld) {
+			this.pointsHeld = pointsHeld;
+		}	
+}
