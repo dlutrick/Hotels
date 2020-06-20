@@ -9,9 +9,9 @@ import entity.Rewards;
 
 public class RewardsDao {
 	private Connection connection;
-	private final String GET_REWARD_BY_ID = "SELECT * FROM rewards WHERE id = ?";
-	private final String ADD_REWARD_By_ID = "INSERT INTO rewards(name, required_points, reward_description, discount) VALUES(?, ?, ?, ?";
-	private final String DELETE_REWARD_BY_ID = "DELETE FROM rewards WHERE id = ?";
+	private final String GET_REWARD_BY_ID = "SELECT * FROM Rewards WHERE id = ?";
+	private final String ADD_REWARD_By_ID = "INSERT INTO Rewards(name, required_points, reward_description, discount) VALUES(?, ?, ?, ?";
+	private final String DELETE_REWARD_BY_ID = "DELETE FROM Rewards WHERE id = ?";
 	
 	public RewardsDao() {
 		connection = DBConnection.getConnection();
