@@ -1,11 +1,10 @@
-CREATE DATABASE IF exists reservations;
+CREATE DATABASE IF NOT EXISTS HotelDB;
 
-use reservations;
+USE HotelDB;
 
 DROP TABLE if exists Customers;
-DROP TABLE if exists Reservations;
-DROP TABLE if exists Rewards;
-DROP TABLE if exists Billing;
+DROP TABLE IF EXISTS Rewards;
+DROP TABLE IF EXISTS Billing;
 
 CREATE TABLE Customers (
 	id INT(11) NOT NULL auto_increment,
@@ -17,4 +16,23 @@ CREATE TABLE Customers (
         PRIMARY KEY (id)
 );
 
+CREATE TABLE Billing(
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    customer_id INT(11) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    zipcode VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+    FOREIGN KEY(customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE Rewards(
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    customer_id INT(11) NOT NULL,
+    required_points INT(11) NOT NULL,
+    reward_description VARCHAR(255) NOT NULl,
+    discount INT(10) NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(customer_id) REFERENCES customers(id)
+);
 
