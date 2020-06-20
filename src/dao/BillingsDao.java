@@ -9,9 +9,9 @@ import entity.Billings;
 
 public class BillingsDao {
 	private Connection connection;
-	private final String DISPLAY_BILLING_BY_ID_QUERY = "SELECT * FROM billing WHERE customer_id = ?";
-	private final String ADD_BILLING_BY_ID_QUERY = "INSERT INTO billing(name, required_points, required_description, discount) VALUES(?, ?, ?, ?)";
-	private final String DELETE_BILLING_BY_ID = "DELETE FROM billing WHERE customer_id = ?";
+	private final String DISPLAY_BILLING_BY_ID_QUERY = "SELECT * FROM Billing WHERE customer_id = ?";
+	private final String ADD_BILLING_BY_ID_QUERY = "INSERT INTO Billing(name, required_points, required_description, discount) VALUES(?, ?, ?, ?)";
+	private final String DELETE_BILLING_BY_ID = "DELETE FROM Billing WHERE customer_id = ?";
 	
 	public BillingsDao() {
 		connection = DBConnection.getConnection();
