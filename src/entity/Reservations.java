@@ -12,7 +12,7 @@ public class Reservations {
 	private int rewardLevel;
 	private int billId;
 
-	private Reservations (int id, int room, Date startDate, Date endDate, int pointsEarned,
+	public Reservations (int id, int room, Date startDate, Date endDate, int pointsEarned,
 			int customerId, int rewardLevel, int billId) {
 		this.id = id;
 		this.room = room;
