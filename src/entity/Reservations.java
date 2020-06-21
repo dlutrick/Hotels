@@ -1,6 +1,5 @@
 package entity;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class Reservations {
 	private int id;

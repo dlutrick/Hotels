@@ -15,7 +15,7 @@ public class ReservationsDao {
 	
 	private final  String SELECT_ALL_RESERVATIONS_QUERY = "SELECT * FROM reservations";
 	private final  String SELECT_RESERVATION_BY_ID_QUERY = "SELECT * FROM reservations WHERE id = ?";
-	private final  String CREATE_RESERVATION_QUERY = "INSERT INTO reservations (DataNames) VALUES (?,?,?,?,?,?,?)";
+	private final  String CREATE_RESERVATION_QUERY = "INSERT INTO reservations (room, start_date, end_date, points_earned, customer_id, reward_level, bill_id) VALUES (?,?,?,?,?,?,?)";
 	private final  String UPDATE_RESERVATION_QUERY = "UPDATE reservations SET room = ?, start_date = ?, "
 			+ "end_date = ?, points_earned = ?, customer_id = ?, reward_level =? WHERE id = ?";
 	private final  String DELETE_RESERVATION_QUERY = "DELETE * FROM reservations where id = ?";
