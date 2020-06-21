@@ -9,12 +9,22 @@ import entity.Billings;
 
 public class BillingsDao {
 	private Connection connection;
-	private final String DISPLAY_BILLING_BY_ID_QUERY = "SELECT * FROM billing WHERE customer_id = ?";
-	private final String ADD_BILLING_BY_ID_QUERY = "INSERT INTO billing(name, required_points, required_description, discount) VALUES(?, ?, ?, ?)";
-	private final String DELETE_BILLING_BY_ID = "DELETE FROM billing WHERE customer_id = ?";
+	private final String DISPLAY_BILLING_BY_ID_QUERY = "SELECT * FROM Billing WHERE customer_id = ?";
+	private final String ADD_BILLING_BY_ID_QUERY = "INSERT INTO Billing(name, required_points, required_description, discount) VALUES(?, ?, ?, ?)";
+	private final String DELETE_BILLING_BY_ID = "DELETE FROM Billing WHERE customer_id = ?";
+	private final String UPDATE_BILLING_INFO_BY_ID = "UPDATE Billing SET state = ?, street = ?, zipcode = ? WHERE customer_id = ?";
 	
 	public BillingsDao() {
 		connection = DBConnection.getConnection();
+	}
+	
+	public void updateBillingInfoById(String state, String street, String zipcode, int customerId) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement(UPDATE_BILLING_INFO_BY_ID);
+		ps.setString(1, street);
+		ps.setString(2, state);
+		ps.setString(3, zipcode);
+		ps.setInt(4, customerId);
+		ps.executeUpdate();
 	}
 	
 	public Billings displayBillingById(int customerId) throws SQLException {

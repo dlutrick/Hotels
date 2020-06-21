@@ -35,11 +35,15 @@ public class Menu {
 				} else if(selection.equals("3")) {
 					deleteBillingById();
 				} else if(selection.equals("4")) {
-					displayRewardById();
+					updateBillingById();
 				} else if(selection.equals("5")) {
-					addRewardById();
+					displayRewardById();
 				} else if(selection.equals("6")) {
+					addRewardById();
+				} else if(selection.equals("7")) {
 					deleteRewardById();
+				} else if(selection.equals("8")) {
+					updateRewardById();
 				}
 			} catch(SQLException e) {
 				e.getStackTrace();
@@ -55,6 +59,32 @@ public class Menu {
 			System.out.println(number + ")" + " " + option);
 			number++;
 		}
+	}
+	
+	public void updateRewardById() throws SQLException {
+		System.out.println("Enter ID: ");
+		int id = scanner.nextInt();
+		System.out.println("Enter Name: ");
+		String name = scanner.nextLine();
+		System.out.println("Enter Required Points: ");
+		int requiredPoints = scanner.nextInt();
+		System.out.println("Enter Reward Description: ");
+		String rewardDescription = scanner.nextLine();
+		System.out.println("Enter Discount: ");
+		int discount = scanner.nextInt();
+		rewardsDao.updateRewardById(name, requiredPoints, rewardDescription, discount, id);
+	}
+	
+	public void updateBillingById() throws SQLException {
+		System.out.println("Enter customer ID: ");
+		int customerId = scanner.nextInt();
+		System.out.println("Enter state: ");
+		String state = scanner.nextLine();
+		System.out.println("Enter street: ");
+		String street = scanner.nextLine();
+		System.out.println("Enter zipcode: ");
+		String zipcode = scanner.nextLine();
+		billingsDao.updateBillingInfoById(state, street, zipcode, customerId);
 	}
 	
 	public void displayBillingById() throws SQLException {
