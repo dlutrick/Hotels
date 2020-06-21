@@ -11,12 +11,12 @@ import entity.Customers;
 import entity.Reservations;
 
 public class Menu {
-	
-	private ReservationsDao ReservationDao = new ReservationsDao();
-	private CustomersDao CustomerDao = new CustomersDao();
+
+  private ReservationsDao ReservationDao = new ReservationsDao();
+	private CustomerDao CustomerDao = new CustomerDao();
 	private Scanner scanner = new Scanner(System.in);
 	private List<String> options = Arrays.asList(
-			"Display Customers",
+      "Display Customers",
 			"Display a Customer",
 			"Add a new Customer",
 			"Update an Existing Customer",
@@ -36,15 +36,15 @@ public class Menu {
 			
 			try {
 				if(selection.equals("1")) {
-					System.out.println("displayCustomers();");
+					displayCustomers();
 				} else if (selection.equals("2")) {
-					System.out.println("displayCustomer();");
+					displayCustomer();
 				} else if (selection.equals("3")) {
-					System.out.println("addCustomer();");
+					addCustomer();
 				} else if (selection.equals("4")) {
-					System.out.println("updateCustomer();");
+					updateCustomer();
 				} else if (selection.equals("5")) {
-					System.out.println("deleteCustomer();");
+					deleteCustomer();
 				} else if (selection.equals("6")) {
 					displayAllReservations();
 				} else if (selection.equals("7")) {
@@ -67,7 +67,13 @@ public class Menu {
 		} while (!selection.equals("-1"));
 	}
 	
-	private void deleteReservation() throws SQLException {
+	private void printMenu() {
+		System.out.println("Please Select an Option... \n-----------------------");
+		for(int i = 0; i < options.size(); i++) {
+			System.out.println(i + 1 + ") " + options.get(i));
+		}
+	}
+		private void deleteReservation() throws SQLException {
 		System.out.println("Warning, This will Delete Reservation. \n PLease enter Reservation ID:");
 		int id = Integer.parseInt(scanner.nextLine());
 		ReservationDao.deleteReservation(id);
@@ -147,72 +153,66 @@ public class Menu {
 		}
 		
 	}
-
-	private void printMenu() {
-		System.out.println("Please Select an Option... \n-----------------------");
-		for(int i = 0; i < options.size(); i++) {
-			System.out.println(i + 1 + ") " + options.get(i));
+  
+	private void displayCustomers() throws SQLException {
+		List<Customers> customers = CustomerDao.getCustomers();
+		for(Customers customer : customers) {
+			System.out.println(customer.getCustomersId() + ": " + "First Name: " + customer.getFirstName()+ ", " + 
+							   " Last Name: " +  customer.getLastName() + ", " + "Email Address: " + customer.getEmailAddress() +
+							   ", " + " Phone Number: " + customer.getPhoneNumber() + ", " + "Point's Held: " + customer.getPointsHeld());
 		}
 	}
 	
-//	private void displayCustomers() throws SQLException {
-//		List<Customers> customers = CustomerDao.getCustomers();
-//		for(Customers customer : customers) {
-//			System.out.println(customer.getCustomersId() + ": " + "First Name: " + customer.getFirstName()+ ", " + 
-//							   " Last Name: " +  customer.getLastName() + ", " + "Email Address: " + customer.getEmailAddress() +
-//							   ", " + " Phone Number: " + customer.getPhoneNumber() + ", " + "Point's Held: " + customer.getPointsHeld());
-//		}
-//	}
-//	
-//	
-//	private void displayCustomer() throws SQLException {
-//		System.out.print("Enter the Customer ID: ");
-//		int id = Integer.parseInt(scanner.nextLine());
-//		Customers customers = CustomerDao.getCustomerById(id);
-//		System.out.println(customers.getCustomersId() + ": " + "First Name: " + customers.getFirstName()+ ", " + 
-//				   " Last Name: " +  customers.getLastName() + ", " + "Email Address: " + customers.getEmailAddress() +
-//				   ", " + " Phone Number: " + customers.getPhoneNumber() + ", " + "Point's Held: " + customers.getPointsHeld());
-//	}
-//	
-//	private void addCustomer() throws SQLException {
-//		
-//		System.out.print("Please enter Customer's First Name: ");
-//		String firstName = scanner.nextLine();
-//		
-//		System.out.print("Please enter Customer's Last Name: ");
-//		String lastName = scanner.nextLine();
-//		
-//		System.out.print("Please enter Customer's Email Address: ");
-//		String emailAddress = scanner.nextLine();
-//		
-//		System.out.print("Please enter Customers Phone Number: ");
-//		String phoneNumber = scanner.nextLine();
-//		
-//		CustomerDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
-//	}
-//	
-//	public void updateCustomer() throws SQLException {
-//		System.out.print("Please enter the customer ID you want to update: ");
-//		int id = Integer.parseInt(scanner.nextLine());
-//		
-//		System.out.print("Please enter the First Name: ");
-//		String firstName = scanner.nextLine();
-//		
-//		System.out.print("Please enter the Last Name: ");
-//		String lastName = scanner.nextLine();
-//		
-//		System.out.print("Please enter the Email Address: ");
-//		String email = scanner.nextLine();
-//		
-//		System.out.print("Please enter the Phone Number: ");
-//		String phoneNumber = scanner.nextLine();
-//		
-//		CustomerDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
-//	}
-//	
-//	public void deleteCustomer() throws SQLException {
-//		System.out.print("Enter Customer ID to delete: ");
-//		int id = Integer.parseInt(scanner.nextLine());
-//		CustomerDao.DeleteCustomerByID(id);
-//	}
+	
+	private void displayCustomer() throws SQLException {
+		System.out.print("Enter the Customer ID: ");
+		int id = Integer.parseInt(scanner.nextLine());
+		Customers customers = CustomerDao.getCustomerById(id);
+		System.out.println(customers.getCustomersId() + ": " + "First Name: " + customers.getFirstName()+ ", " + 
+				   " Last Name: " +  customers.getLastName() + ", " + "Email Address: " + customers.getEmailAddress() +
+				   ", " + " Phone Number: " + customers.getPhoneNumber() + ", " + "Point's Held: " + customers.getPointsHeld());
+	}
+	
+	private void addCustomer() throws SQLException {
+		
+		System.out.print("Please enter Customer's First Name: ");
+		String firstName = scanner.nextLine();
+		
+		System.out.print("Please enter Customer's Last Name: ");
+		String lastName = scanner.nextLine();
+		
+		System.out.print("Please enter Customer's Email Address: ");
+		String emailAddress = scanner.nextLine();
+		
+		System.out.print("Please enter Customers Phone Number: ");
+		String phoneNumber = scanner.nextLine();
+		
+		CustomerDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
+	}
+	
+	public void updateCustomer() throws SQLException {
+		System.out.print("Please enter the customer ID you want to update: ");
+		int id = Integer.parseInt(scanner.nextLine());
+		
+		System.out.print("Please enter the First Name: ");
+		String firstName = scanner.nextLine();
+		
+		System.out.print("Please enter the Last Name: ");
+		String lastName = scanner.nextLine();
+		
+		System.out.print("Please enter the Email Address: ");
+		String email = scanner.nextLine();
+		
+		System.out.print("Please enter the Phone Number: ");
+		String phoneNumber = scanner.nextLine();
+		
+		CustomerDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
+	}
+	
+	public void deleteCustomer() throws SQLException {
+		System.out.print("Enter Customer ID to delete: ");
+		int id = Integer.parseInt(scanner.nextLine());
+		CustomerDao.DeleteCustomerByID(id);
+	}
 }
+
