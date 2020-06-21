@@ -13,12 +13,24 @@ public class Menu {
 	private BillingsDao billingsDao = new BillingsDao();
 	private RewardsDao rewardsDao = new RewardsDao();
 	private List<String> options = Arrays.asList(
+			"Display Customers",
+			"Display a Customer",
+			"Add a new Customer",
+			"Update an Existing Customer",
+			"Delete a Customer",
+			"Display all Reservations",
+			"Display a Reservation",
+			"Add a new Reservation",
+			"Update a Reservation",
+			"Delete a Reservation",
 			"Display Billing By ID", 
 			"Add Billing By ID", 
 			"Delete Billing By ID", 
+			"Update Billing By ID", 
 			"Get Reward By ID", 
 			"Add Reward", 
-			"Delete Reward");
+			"Delete Reward",
+			"Update Reward By ID");
 	
 	public void start() {
 		String selection = "";
@@ -29,20 +41,40 @@ public class Menu {
 			
 			try {
 				if(selection.equals("1")) {
+					displayCustomers();
+				} else if (selection.equals("2")) {
+					displayCustomer();
+				} else if (selection.equals("3")) {
+					addCustomer();
+				} else if (selection.equals("4")) {
+					updateCustomer();
+				} else if (selection.equals("5")) {
+					deleteCustomer();
+				} else if (selection.equals("6")) {
+					displayAllReservations();
+				} else if (selection.equals("7")) {
+					displayReservation();
+				} else if (selection.equals("8")) {
+					addReservation();
+				} else if (selection.equals("9")) {
+					updateReservation();
+				} else if (selection.equals("10")) {
+					deleteReservation();
+				} else if (selection.equals("11")) {
 					displayBillingById();
-				} else if(selection.equals("2")) {
+				} else if (selection.equals("12")) {
 					addBillingById();
-				} else if(selection.equals("3")) {
+				} else if (selection.equals("13")) {
 					deleteBillingById();
-				} else if(selection.equals("4")) {
+				} else if (selection.equals("14")) {
 					updateBillingById();
-				} else if(selection.equals("5")) {
+				} else if (selection.equals("15")) {
 					displayRewardById();
-				} else if(selection.equals("6")) {
+				} else if (selection.equals("16")) {
 					addRewardById();
-				} else if(selection.equals("7")) {
+				} else if (selection.equals("17")) {
 					deleteRewardById();
-				} else if(selection.equals("8")) {
+				} else if (selection.equals("18")) {
 					updateRewardById();
 				}
 			} catch(SQLException e) {
