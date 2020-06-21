@@ -5,13 +5,14 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import dao.CustomersDao;
 import dao.ReservationsDao;
+import dao.CustomersDao;
 import entity.Customers;
 import entity.Reservations;
 
 public class Menu {
-
+	
+	private ReservationsDao ReservationDao = new ReservationsDao();
 	private CustomersDao CustomerDao = new CustomersDao();
 	private Scanner scanner = new Scanner(System.in);
 	private List<String> options = Arrays.asList(
@@ -69,7 +70,7 @@ public class Menu {
 	private void deleteReservation() throws SQLException {
 		System.out.println("Warning, This will Delete Reservation. \n PLease enter Reservation ID:");
 		int id = Integer.parseInt(scanner.nextLine());
-		ReservationsDao.deleteReservation(id);
+		ReservationDao.deleteReservation(id);
 		
 	}
 
@@ -98,7 +99,7 @@ public class Menu {
 		System.out.print("Please enter Billing ID: ");
 		int billId = Integer.parseInt(scanner.nextLine());
 		
-		ReservationsDao.updateReservation(id, room, startDate, endDate, pointsEarned, customerId, rewardLevel, billId);
+		ReservationDao.updateReservation(id, room, startDate, endDate, pointsEarned, customerId, rewardLevel, billId);
 		
 	}
 
@@ -124,14 +125,14 @@ public class Menu {
 		System.out.print("Please enter Billing ID: ");
 		int billId = Integer.parseInt(scanner.nextLine());
 		
-		ReservationsDao.createNewReservation(room, startDate, endDate, pointsEarned, customerId, rewardLevel, billId);
+		ReservationDao.createNewReservation(room, startDate, endDate, pointsEarned, customerId, rewardLevel, billId);
 		
 	}
 
 	private void displayReservation() throws SQLException {
 		System.out.print("Enter the Customer ID: ");
 		int id = Integer.parseInt(scanner.nextLine());
-		Reservations tempRes = ReservationsDao.getReservation(id);
+		Reservations tempRes = ReservationDao.getReservation(id);
 		System.out.println("Reservation ID: " + tempRes.getCustomerId() + ", " + "Room Number: " + tempRes.getRoom() + ", " + "Start Date: " +
 				tempRes.getStartDate() + ", " + "End Date: " + tempRes.getEndDate() + ", " + "Points Earned: " + tempRes.getPointsEarned() + ", " +
 				"Reward Level" + tempRes.getRewardLevel() + ", " + "Customer ID: " + tempRes.getCustomerId() + ", " + "Bill ID" + tempRes.getBillId());
@@ -139,7 +140,7 @@ public class Menu {
 	}
 
 	private void displayAllReservations() throws SQLException {
-		List<Reservations> reservations = ReservationsDao.getAllReservations();
+		List<Reservations> reservations = ReservationDao.getAllReservations();
 		for (Reservations reservation : reservations) {
 		System.out.println("Reservation ID: " + reservation.getCustomerId() + ", " + "Room Number: " + reservation.getRoom() + ", " + "Start Date: " +
 				reservation.getStartDate() + ", " + "End Date: " + reservation.getEndDate() + ", " + "Points Earned: " + reservation.getPointsEarned() + ", " +
@@ -188,7 +189,7 @@ public class Menu {
 		System.out.print("Please enter Customers Phone Number: ");
 		String phoneNumber = scanner.nextLine();
 		
-		CustomersDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
+		CustomerDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
 	}
 	
 	public void updateCustomer() throws SQLException {
@@ -207,12 +208,12 @@ public class Menu {
 		System.out.print("Please enter the Phone Number: ");
 		String phoneNumber = scanner.nextLine();
 		
-		CustomersDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
+		CustomerDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
 	}
 	
 	public void deleteCustomer() throws SQLException {
 		System.out.print("Enter Customer ID to delete: ");
 		int id = Integer.parseInt(scanner.nextLine());
-		CustomersDao.DeleteCustomerByID(id);
+		CustomerDao.DeleteCustomerByID(id);
 	}
 }

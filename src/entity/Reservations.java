@@ -44,7 +44,7 @@ public class Reservations {
 	public int getRewardLevel() {
 		return rewardLevel;
 	}
-	public int billId() {
+	public int getBillId() {
 		return billId;
 	}
 	
