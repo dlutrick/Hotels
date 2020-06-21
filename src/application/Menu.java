@@ -107,10 +107,10 @@ public class Menu {
 	}
 	
 	public void deleteBillingById() throws SQLException {
-		System.out.println("Please enter a customer ID: ");
-		int customerId = scanner.nextInt();
+		System.out.println("Please enter an ID: ");
+		int id = scanner.nextInt();
 		
-		billingsDao.deleteBillingById(customerId);
+		billingsDao.deleteBillingById(id);
 	}
 	
 	public void displayRewardById() throws SQLException {
