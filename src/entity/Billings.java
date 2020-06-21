@@ -1,14 +1,13 @@
 package entity;
 
 public class Billings {
-
 	private int id;
 	private int customerId;
 	private String state;
 	private String street;
 	private String zipcode;
 	
-	private Billings(int id, int customerId, String state, String street, String zipcode) {
+	public Billings(int id, int customerId, String state, String street, String zipcode) {
 		this.id = id;
 		this.customerId = customerId;
 		this.state = state;
@@ -55,5 +54,4 @@ public class Billings {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-	
 }

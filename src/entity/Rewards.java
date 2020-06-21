@@ -2,14 +2,14 @@ package entity;
 
 public class Rewards {
 	private int id;
-	private int customerId;
+	private String name;
 	private int requiredPoints;
 	private String rewardDescription;
 	private int discount;
 	
-	private Rewards(int id, int customerId, int requiredPoints, String rewardDescription, int discount) {
+	public Rewards(int id, String name, int requiredPoints, String rewardDescription, int discount) {
 		this.id = id;
-		this.customerId = customerId;
+		this.name = name;
 		this.requiredPoints = requiredPoints;
 		this.rewardDescription = rewardDescription;
 		this.discount = discount;
@@ -23,12 +23,12 @@ public class Rewards {
 		this.id = id;
 	}
 
-	public int getCustomerId() {
-		return customerId;
+	public String getName() {
+		return name;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getRequiredPoints() {
