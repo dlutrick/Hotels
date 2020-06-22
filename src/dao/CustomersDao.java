@@ -9,7 +9,7 @@ import java.util.List;
 
 import entity.Customers;
 
-public class CustomerDao {
+public class CustomersDao {
 
 	private Connection connection;
 	private final String GET_CUSTOMERS_QUERY = "SELECT * FROM Customers";
@@ -18,8 +18,8 @@ public class CustomerDao {
 	private final String UPDATE_EXISTING_CUSTOMER_QUERY = "UPDATE Customers SET first_name = ?,  last_name = ?, email = ?, phone_number = ? WHERE id =?";
 	private final String DELETE_CUSTOMER_BY_ID_Q_QUERY = "DELETE FROM Customers WHERE id = ?";
 	
-	public CustomerDao() {
-		connection = DBconnection.getConnection();
+	public CustomersDao() {
+		connection = DBConnection.getConnection();
 	}
 	
 	public List<Customers> getCustomers() throws SQLException {

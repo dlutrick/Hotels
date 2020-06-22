@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import dao.BillingsDao;
-import dao.RewardsDao;	
-	
+import dao.CustomersDao;
 import dao.ReservationsDao;
-import dao.CustomerDao;
+import dao.RewardsDao;
 import entity.Customers;
 import entity.Reservations;
 
@@ -19,7 +18,7 @@ public class Menu {
 	private BillingsDao billingsDao = new BillingsDao();
 	private RewardsDao rewardsDao = new RewardsDao();
 	private ReservationsDao ReservationDao = new ReservationsDao();
-	private CustomerDao CustomerDao = new CustomerDao();
+	private CustomersDao customerDao = new CustomersDao();
 	private List<String> options = Arrays.asList(
 			"Display Customers",
 			"Display a Customer",
@@ -46,7 +45,7 @@ public class Menu {
 		String selection = "";
 		
 		do {
-			printMenu1();
+			printMenu();
 			selection = scanner.nextLine();
 			
 			try {
@@ -94,7 +93,7 @@ public class Menu {
 		} while(!selection.equals("-1"));
 	}
 	
-	public void printMenu1() {
+	public void printMenu() {
 		int number = 1;
 		System.out.println("Please make a selection...");
 		for(String option : options) {
@@ -173,17 +172,10 @@ public class Menu {
 		rewardsDao.deleteRewardById(id);
 	}
 	
-	private void printMenu() {
-		System.out.println("Please Select an Option... \n-----------------------");
-		for(int i = 0; i < options.size(); i++) {
-			System.out.println(i + 1 + ") " + options.get(i));
-		}
-	}
-		private void deleteReservation() throws SQLException {
+	private void deleteReservation() throws SQLException {
 		System.out.println("Warning, This will Delete Reservation. \n PLease enter Reservation ID:");
 		int id = Integer.parseInt(scanner.nextLine());
 		ReservationDao.deleteReservation(id);
-		
 	}
 
 	private void updateReservation() throws SQLException {
@@ -261,7 +253,7 @@ public class Menu {
 	}
   
 	private void displayCustomers() throws SQLException {
-		List<Customers> customers = CustomerDao.getCustomers();
+		List<Customers> customers = customerDao.getCustomers();
 		for(Customers customer : customers) {
 			System.out.println(customer.getCustomersId() + ": " + "First Name: " + customer.getFirstName()+ ", " + 
 							   " Last Name: " +  customer.getLastName() + ", " + "Email Address: " + customer.getEmailAddress() +
@@ -273,7 +265,7 @@ public class Menu {
 	private void displayCustomer() throws SQLException {
 		System.out.print("Enter the Customer ID: ");
 		int id = Integer.parseInt(scanner.nextLine());
-		Customers customers = CustomerDao.getCustomerById(id);
+		Customers customers = customerDao.getCustomerById(id);
 		System.out.println(customers.getCustomersId() + ": " + "First Name: " + customers.getFirstName()+ ", " + 
 				   " Last Name: " +  customers.getLastName() + ", " + "Email Address: " + customers.getEmailAddress() +
 				   ", " + " Phone Number: " + customers.getPhoneNumber() + ", " + "Point's Held: " + customers.getPointsHeld());
@@ -293,7 +285,7 @@ public class Menu {
 		System.out.print("Please enter Customers Phone Number: ");
 		String phoneNumber = scanner.nextLine();
 		
-		CustomerDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
+		customerDao.addCustomer(firstName, lastName, emailAddress, phoneNumber);
 	}
 	
 	public void updateCustomer() throws SQLException {
@@ -312,13 +304,13 @@ public class Menu {
 		System.out.print("Please enter the Phone Number: ");
 		String phoneNumber = scanner.nextLine();
 		
-		CustomerDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
+		customerDao.updateExistingCustomer(id, firstName, lastName, email, phoneNumber);
 	}
 	
 	public void deleteCustomer() throws SQLException {
 		System.out.print("Enter Customer ID to delete: ");
 		int id = Integer.parseInt(scanner.nextLine());
-		CustomerDao.DeleteCustomerByID(id);
+		customerDao.DeleteCustomerByID(id);
 	}
 }
 
